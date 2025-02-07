@@ -13,17 +13,21 @@
             text-align: center;
         }
         .gallery {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 20px auto;
         }
         .gallery img {
-            width: 300px;
+            position: absolute;
+            width: 100%;
             height: auto;
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .gallery img:not(:first-child) {
+            opacity: 0;
         }
         .gallery img:hover {
             transform: scale(1.1);
@@ -45,24 +49,44 @@
             background-color: #ccc;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let images = document.querySelectorAll(".gallery img");
+            let currentIndex = 0;
+
+            images.forEach((img, index) => {
+                img.addEventListener("click", function() {
+                    images[currentIndex].style.opacity = 0;
+                    currentIndex = (index + 1) % images.length;
+                    images[currentIndex].style.opacity = 1;
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <h1 style="color: white;">Photo Gallery</h1>
     <div class="gallery">
-        <a href="jade1.jpg"><img src="jade10.png" alt="Photo 1"></a>
-        <a href="jade12.jpg"><img src="jade1.jpg" alt="Photo 2"></a>
-        <a href="jade14.jpg"><img src="jade12.jpg" alt="Photo 3"></a>
-        <a href="jade2.jpg"><img src="jade14.jpg" alt="Photo 4"></a>
-        <a href="jade22.jpg"><img src="jade2.jpg" alt="Photo 5"></a>
-        <a href="jade24.jpg"><img src="jade22.jpg" alt="Photo 5"></a>
-        <a href="jade25.jpg"><img src="jade24.jpg" alt="Photo 5"></a>
-        <a href="jade26.jpg"><img src="jade25.jpg" alt="Photo 5"></a>
-        <a href="jade27.jpg"><img src="jade26.jpg" alt="Photo 5"></a>
-        <a href="jade28.jpg"><img src="jade27.jpg" alt="Photo 5"></a>
-        <a href="jade29.jpg"><img src="jade28.jpg" alt="Photo 5"></a>
-        <a href="jade30.jpg"><img src="jade29.jpg" alt="Photo 5"></a>
-        <a href="jade31.jpg"><img src="jade30.jpg" alt="Photo 5"></a>
+        <img src="jade1.jpg" alt="Photo 1">
+        <img src="jade10.png" alt="Photo 2">
+        <img src="jade12.jpg" alt="Photo 3">
+        <img src="jade14.jpg" alt="Photo 4">
+        <img src="jade2.jpg" alt="Photo 5">
+        <img src="jade22.jpg" alt="Photo 5">
+        <img src="jade24.jpg" alt="Photo 5">
+        <img src="jade25.jpg" alt="Photo 5">
+        <img src="jade26.jpg" alt="Photo 5">
+        <img src="jade27.jpg" alt="Photo 5">
+        <img src="jade28.jpg" alt="Photo 5">
+        <img src="jade29.jpg" alt="Photo 5">
+        <img src="jade30.jpg" alt="Photo 5">
+        <img src="jade31.jpg" alt="Photo 5">
+        <img src="jade32.jpg" alt="Photo 5">
+        <img src="jade33.jpg" alt="Photo 5">
+        <img src="jade34.jpg" alt="Photo 5">
+        <img src="jade35.jpg" alt="Photo 5">
+        <img src="jade36.jpg" alt="Photo 5">
     </div>
-    <a href="index.html" class="home-button">Home</a>
+    <a href="https://jmacaambac.github.io/jmwebsite/" class="home-button">Home</a>
 </body>
 </html>
