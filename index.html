@@ -1,1 +1,78 @@
-My Gallery
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            display: none;
+        }
+        .gallery img:first-child {
+            display: block;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #111;
+        }
+        .button:hover {
+            background-color: #ccc;
+        }
+    </style>
+    <script>
+        let currentIndex = 0;
+        function showNextImage() {
+            let images = document.querySelectorAll('.gallery img');
+            images[currentIndex].style.display = 'none';
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.display = 'block';
+        }
+        function showPreviousImage() {
+            let images = document.querySelectorAll('.gallery img');
+            images[currentIndex].style.display = 'none';
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <h1 style="color: white;">Photo Gallery</h1>
+    <div class="gallery">
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="photo2.jpg" alt="Photo 2">
+        <img src="photo3.jpg" alt="Photo 3">
+        <img src="photo4.jpg" alt="Photo 4">
+        <img src="photo5.jpg" alt="Photo 5">
+    </div>
+    <div class="controls">
+        <button class="button" onclick="showPreviousImage()">Back</button>
+        <button class="button" onclick="showNextImage()">Next</button>
+    </div>
+</body>
+</html>
