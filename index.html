@@ -1,92 +1,173 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
+    <title>JA's Photo Gallery</title>
+       <script>
+     const player = document.getElementById("player");
+        let offsetX, offsetY, isDragging = false;
+
+        player.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            offsetX = e.clientX - player.getBoundingClientRect().left;
+            offsetY = e.clientY - player.getBoundingClientRect().top;
+            player.style.cursor = "grabbing";
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            let x = e.clientX - offsetX;
+            let y = e.clientY - offsetY;
+            player.style.left = `${x}px`;
+            player.style.top = `${y}px`;
+            player.style.position = "absolute";
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+            player.style.cursor = "grab";
+        });
+      </script>
     <style>
+        .spotify-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            cursor: grab;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
+            font-family: 'Century Gothic', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('jade60.jpg') no-repeat center center/cover;
             margin: 0;
-            padding: 0;
+            flex-direction: column;
             text-align: center;
         }
+            h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 100px;
+                 }
+        .logo-hover {
+            width: 75px;
+            transition: transform 0.3s ease-in-out;
+            }
+        .logo-hover:hover {
+            transform: scale(1.5);
+        }  
         .gallery {
             position: relative;
             width: 300px;
             height: 400px;
-            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+        
         .gallery img {
             position: absolute;
-            width: 100%;
+            width: 110%;
             height: auto;
             border-radius: 10px;
-            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
-        }
-        .gallery img:not(:first-child) {
             opacity: 0;
         }
-        .gallery img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        .gallery img:first-child {
+            opacity: 1;
         }
-        .home-button {
-            margin-top: 20px;
+        
+        .back-button {
+            margin-top: 100px;
             padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            background-color: #fff;
-            color: #111;
-            cursor: pointer;
+            background: #590404;
+            color: white;
             text-decoration: none;
-            display: inline-block;
+            border-radius: 10px;
+            transition: background 0.3s;
         }
-        .home-button:hover {
-            background-color: #ccc;
+        .back-button:hover {
+            background: #00f549;
         }
+    
     </style>
-    <script>
+</head>
+<body>
+  
+    <h1>My Photos</h1>
+    <div class="gallery">
+        <img src="jade1.jpg" alt="Travel Image 1">
+        <img src="jade10.png" alt="Travel Image 2">
+        <img src="jade12.jpg" alt="Travel Image 3">
+        <img src="jade14.jpg" alt="Travel Image 4">
+        <img src="jade2.jpg" alt="Travel Image 5">
+        <img src="jade22.jpg" alt="Travel Image 6">
+        <img src="jade24.jpg" alt="Travel Image 7">
+        <img src="jade25.jpg" alt="Travel Image 8">
+        <img src="jade26.jpg" alt="Travel Image 9">
+        <img src="jade27.jpg" alt="Travel Image 10">
+        <img src="jade28.jpg" alt="Travel Image 11">
+        <img src="jade29.jpg" alt="Travel Image 12">
+        <img src="jade30.jpg" alt="Travel Image 13">
+        <img src="ja33.jpg" alt="Travel Image 14">
+        <img src="jade31.jpg" alt="Travel Image 15">
+        <img src="jade32.jpg" alt="Travel Image 16">
+        <img src="jade34.jpg" alt="Travel Image 17">
+        <img src="jade35.jpg" alt="Travel Image 18">
+        <img src="jade36.jpg" alt="Travel Image 19">
+        <img src="jade38.jpg" alt="Travel Image 20">
+        <img src="jade39.jpg" alt="Travel Image 21">
+        <img src="jade44.jpg" alt="Travel Image 22">
+        <img src="jade45.jpg" alt="Travel Image 23">
+        <img src="jade43.jpg" alt="Travel Image 24">
+        <img src="jade46.jpg" alt="Travel Image 25">
+        <img src="jade48.jpg" alt="Travel Image 26">
+        <img src="jade49.jpg" alt="Travel Image 27">
+        <img src="jade5.jpg" alt="Travel Image 28">
+        <img src="jade50.jpg" alt="Travel Image 29">
+        <img src="jade52.jpg" alt="Travel Image 30">
+        <img src="jade53.jpg" alt="Travel Image 31">
+        <img src="jade54.jpg" alt="Travel Image 32">
+        <img src="jade55.jpg" alt="Travel Image 33">
+        <img src="jade57.jpg" alt="Travel Image 34">
+        <img src="jade58.jpg" alt="Travel Image 35">
+        <img src="jade6.jpg" alt="Travel Image 36">
+    </div>
+        <a href="https://jmacaambac.github.io/mywebprofile/" class="back-button">Home</a>
+    <div>
+       <img src="JPM Logo2.png" class="logo-hover" alt="My Logo" style="width: 75px;  display: inline-block;">
+    </div>
+     <script>
+        
         document.addEventListener("DOMContentLoaded", function() {
-            let images = document.querySelectorAll(".gallery img");
+            const images = document.querySelectorAll(".gallery img");
             let currentIndex = 0;
 
             images.forEach((img, index) => {
                 img.addEventListener("click", function() {
-                    images[currentIndex].style.opacity = 0;
-                    currentIndex = (index + 1) % images.length;
-                    images[currentIndex].style.opacity = 1;
+                    images[currentIndex].style.opacity = "0";
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].style.opacity = "1";
                 });
             });
         });
+       
     </script>
-</head>
-<body>
-    <h1 style="color: white;">Photo Gallery</h1>
-    <div class="gallery">
-        <img src="jade1.jpg" alt="Photo 1">
-        <img src="jade10.png" alt="Photo 2">
-        <img src="jade12.jpg" alt="Photo 3">
-        <img src="jade14.jpg" alt="Photo 4">
-        <img src="jade2.jpg" alt="Photo 5">
-        <img src="jade22.jpg" alt="Photo 6">
-        <img src="jade24.jpg" alt="Photo 7">
-        <img src="jade25.jpg" alt="Photo 8">
-        <img src="jade26.jpg" alt="Photo 9">
-        <img src="jade27.jpg" alt="Photo 10">
-        <img src="jade28.jpg" alt="Photo 11">
-        <img src="jade29.jpg" alt="Photo 12">
-        <img src="jade30.jpg" alt="Photo 13">
-        <img src="jade31.jpg" alt="Photo 14">
-        <img src="jade32.jpg" alt="Photo 15">
-        <img src="jade33.jpg" alt="Photo 16">
-        <img src="jade34.jpg" alt="Photo 17">
-        <img src="jade35.jpg" alt="Photo 18">
-        <img src="jade36.jpg" alt="Photo 19">
-    </div>
-    <a href="https://jmacaambac.github.io/mywebprofile/" class="home-button">Home</a>
+  
 </body>
 </html>
