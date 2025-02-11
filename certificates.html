@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Gallery Grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 5px;
+            max-width: 1000px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, opacity 0.3s;
+            border-radius: 5px;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+
+        .zoomed {
+            transform: scale(2);
+            position: relative;
+            z-index: 1000;
+        }
+
+
+        .gallery img:not(.zoomed) {
+            opacity: 0.2;
+        }
+         .back-button {
+            margin-top: 100px;
+            padding: 10px 20px;
+            background: #590404;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+        .back-button:hover {
+            background: #03A9F4;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="gallery-container">
+    <div class="gallery">
+   
+        <img src="jade1.jpg" alt="Image 1">
+        <img src="jade10.png" alt="Image 2">
+        <img src="jade12.jpg" alt="Image 3">
+        <img src="jade14.jpg" alt="Image 4">
+        <img src="jade2.jpg" alt="Image 5">
+        <img src="jade22.jpg" alt="Image 6">
+        <img src="jade24.jpg" alt="Image 7">
+        <img src="jade25.jpg" alt="Image 8">
+        <img src="jade26.jpg" alt="Image 9">
+        <img src="jade27.jpg" alt="Image 10">
+
+<a href="https://jmacaambac.github.io/jpmgallery/" class="back-button">Back to Gallery</a>
+        
+    </div>
+</div>
+
+<script>
+    const images = document.querySelectorAll(".gallery img");
+
+    images.forEach(img => {
+        img.addEventListener("click", function () {
+            if (this.classList.contains("zoomed")) {
+                this.classList.remove("zoomed");
+                images.forEach(image => image.style.opacity = "1");
+            } else {
+                images.forEach(image => image.classList.remove("zoomed"));
+                this.classList.add("zoomed");
+                images.forEach(image => {
+                    if (!image.classList.contains("zoomed")) {
+                        image.style.opacity = "0.2";
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
