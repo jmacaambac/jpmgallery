@@ -1,166 +1,164 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JPM's Photo Gallery</title>
-       <script>
-     const player = document.getElementById("player");
-        let offsetX, offsetY, isDragging = false;
-
-        player.addEventListener("mousedown", (e) => {
-            isDragging = true;
-            offsetX = e.clientX - player.getBoundingClientRect().left;
-            offsetY = e.clientY - player.getBoundingClientRect().top;
-            player.style.cursor = "grabbing";
-        });
-
-        document.addEventListener("mousemove", (e) => {
-            if (!isDragging) return;
-            let x = e.clientX - offsetX;
-            let y = e.clientY - offsetY;
-            player.style.left = `${x}px`;
-            player.style.top = `${y}px`;
-            player.style.position = "absolute";
-        });
-
-        document.addEventListener("mouseup", () => {
-            isDragging = false;
-            player.style.cursor = "grab";
-        });
-      </script>
+    <title>Stack Effect Gallery with Lightbox</title>
     <style>
-            
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
+
         body {
-            font-family: 'Century Gothic', sans-serif;
+            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('jade70.jpeg') no-repeat center center/cover;
-            margin: 0;
             flex-direction: column;
-            text-align: center;
-            font-color: black;
         }
-            h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 100px;
-                 }
-        .logo-hover {
-            width: 75px;
-            transition: transform 0.3s ease-in-out;
-            }
-        .logo-hover:hover {
-            transform: scale(1.5);
-        }  
-        .gallery {
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            max-width: 900px;
+        }
+
+        .gallery-item {
             position: relative;
-            width: 300px;
-            height: 400px;
-            display: flex;
+            overflow: hidden;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.4s ease-in-out, opacity 0.4s;
+            border-radius: 10px;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .caption {
+            font-size: 14px;
+            color: #444;
+            margin-top: 5px;
+        }
+
+   
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
             justify-content: center;
             align-items: center;
+            z-index: 1000;
         }
-        
-        .gallery img {
-            position: absolute;
-            width: 110%;
-            height: auto;
+
+        .lightbox img {
+            max-width: 80%;
+            max-height: 80%;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
-            opacity: 0;
+            transition: transform 0.4s ease-in-out;
         }
-        .gallery img:first-child {
-            opacity: 1;
-        }
-        
-        .back-button {
-            margin-top: 100px;
-            padding: 10px 20px;
-            background: #590404;
+
+        .lightbox .caption {
             color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: background 0.3s;
+            font-size: 16px;
+            margin-top: 10px;
         }
-        .back-button:hover {
-            background: #00f549;
+
+       
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: 0.3s;
         }
-    
+
+        .close-btn:hover {
+            background: red;
+            color: white;
+        }
     </style>
 </head>
 <body>
-  
-    <h1>My Photos</h1>
-    <div class="gallery">
-        <img src="jade1.jpg" alt="Image 1">
-        <img src="jade10.png" alt="Image 2">
-        <img src="jade12.jpg" alt="Image 3">
-        <img src="jade14.jpg" alt="Image 4">
-        <img src="jade2.jpg" alt="Image 5">
-        <img src="jade22.jpg" alt="Image 6">
-        <img src="jade24.jpg" alt="Image 7">
-        <img src="jade25.jpg" alt="Image 8">
-        <img src="jade26.jpg" alt="Image 9">
-        <img src="jade27.jpg" alt="Image 10">
-        <img src="jade28.jpg" alt="Image 11">
-        <img src="jade29.jpg" alt="Image 12">
-        <img src="jade30.jpg" alt="Image 13">
-        <img src="jade33.jpg" alt="Image 14">
-        <img src="jade31.jpg" alt="Image 15">
-        <img src="jade32.jpg" alt="Image 16">
-        <img src="jade34.jpg" alt="Image 17">
-        <img src="jade35.jpg" alt="Image 18">
-        <img src="jade36.jpg" alt="Image 19">
-        <img src="jade38.jpg" alt="Image 20">
-        <img src="jade39.jpg" alt="Image 21">
-        <img src="jade44.jpg" alt="Image 22">
-        <img src="jade40.jpg" alt="Image 23">
-        <img src="jade43.jpg" alt="Image 24">
-        <img src="jade44.jpg" alt="Image 25">
-        <img src="jade45.jpg" alt="Image 26">
-        <img src="jade46.jpg" alt="Image 27">
-        <img src="jade48.jpg" alt="Image 28">
-        <img src="jade49.jpeg" alt="Image 29">
-        <img src="jade5.jpg" alt="Image 30">
-        <img src="jade50.jpeg" alt="Image 31">
-        <img src="jade52.jpeg" alt="Image 32">
-        <img src="jade53.jpeg" alt="Image 33">
-        <img src="jade54.jpeg" alt="Image 34">
-        <img src="jade55.jpeg" alt="Image 35">
-        <img src="jade57.jpeg" alt="Image 36">
-        <img src="jade58.jpeg" alt="Image 37">
-        <img src="jade6.jpg" alt="Image 38">
-        <img src="jade9.jpg" alt="Image 39">
-    </div>
-        <a href="https://jmacaambac.github.io/mywebprofile/" class="back-button">Home</a>
-    <div>
-       <img src="JPM Logo2.png" class="logo-hover" alt="My Logo" style="width: 75px;   margin-top: 10px; display: inline-block;">
-    </div>
-     <script>
-        
-        document.addEventListener("DOMContentLoaded", function() {
-            const images = document.querySelectorAll(".gallery img");
-            let currentIndex = 0;
 
-            images.forEach((img, index) => {
-                img.addEventListener("click", function() {
-                    images[currentIndex].style.opacity = "0";
-                    currentIndex = (currentIndex + 1) % images.length;
-                    images[currentIndex].style.opacity = "1";
-                });
-            });
+<div class="gallery-container">
+    <div class="gallery-item">
+        <img src="https://via.placeholder.com/300" alt="Scenic View" data-caption="Scenic View of Nature">
+        <p class="caption">Scenic View</p>
+    </div>
+    <div class="gallery-item">
+        <img src="https://via.placeholder.com/300" alt="Mountain Peaks" data-caption="Snowy Mountain Peaks">
+        <p class="caption">Mountain Peaks</p>
+    </div>
+    <div class="gallery-item">
+        <img src="https://via.placeholder.com/300" alt="Ocean Sunset" data-caption="Beautiful Ocean Sunset">
+        <p class="caption">Ocean Sunset</p>
+    </div>
+    <div class="gallery-item">
+        <img src="https://via.placeholder.com/300" alt="City Lights" data-caption="Vibrant City Lights">
+        <p class="caption">City Lights</p>
+    </div>
+    <div class="gallery-item">
+        <img src="https://via.placeholder.com/300" alt="Desert Dunes" data-caption="Golden Desert Dunes">
+        <p class="caption">Desert Dunes</p>
+    </div>
+</div>
+
+
+<div class="lightbox">
+    <button class="close-btn">&times;</button>
+    <img src="" alt="Zoomed Image">
+    <p class="caption"></p>
+</div>
+
+<script>
+    const images = document.querySelectorAll(".gallery img");
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    const lightboxCaption = lightbox.querySelector(".caption");
+    const closeBtn = document.querySelector(".close-btn");
+
+    images.forEach(img => {
+        img.addEventListener("click", function () {
+            lightbox.style.display = "flex";
+            lightboxImg.src = this.src;
+            lightboxCaption.textContent = this.dataset.caption;
         });
-       
-    </script>
-  
+    });
+
+    closeBtn.addEventListener("click", function () {
+        lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", function (e) {
+        if (e.target !== lightboxImg) {
+            lightbox.style.display = "none";
+        }
+    });
+</script>
+
 </body>
 </html>
