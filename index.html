@@ -80,18 +80,11 @@
             width: 33.33%;
             counter-increment: item;
             scroll-snap-align: center;
-            background-size: cover;
-            background-position: center;
         }
-        .snapper {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .slide img {
             width: 100%;
             height: 100%;
-            scroll-snap-align: center;
-            background-size: cover;
-            background-position: 50%;
+            object-fit: cover;
             border: 10px solid var(--color-bg);
         }
         .prev, .next {
@@ -114,37 +107,34 @@
         <div class="viewport">
             <div class="carousel-inner">
                 <div class="slide">
-                    <div class="snapper" style="background-image: url('jade10.png');"></div>
+                    <img src="jade1.jpg" alt="Image 1">
                 </div>
                 <div class="slide">
-                    <div class="snapper" style="background-image: url('jade12.jpg');"></div>
+                    <img src="jade2.jpg" alt="Image 2">
                 </div>
                 <div class="slide">
-                    <div class="snapper" style="background-image: url('jade2.jpg');"></div>
+                    <img src="jade12.jpg" alt="Image 3">
                 </div>
                  <div class="slide">
-                    <div class="snapper" style="background-image: url('jade22.jpg');"></div>
+                    <img src="jade14.jpg" alt="Image 3">
                 </div>
                  <div class="slide">
-                    <div class="snapper" style="background-image: url('jade24.jpg');"></div>
+                    <img src="jade22.jpg" alt="Image 3">
                 </div>
                  <div class="slide">
-                    <div class="snapper" style="background-image: url('jade25.jpg');"></div>
+                    <img src="jade24.jpg" alt="Image 3">
                 </div>
                  <div class="slide">
-                    <div class="snapper" style="background-image: url('jade26.jpg');"></div>
+                    <img src="jade25.jpg" alt="Image 3">
                 </div>
                  <div class="slide">
-                    <div class="snapper" style="background-image: url('jade27.jpg');"></div>
+                    <img src="jade26.jpg" alt="Image 3">
                 </div>
                  <div class="slide">
-                    <div class="snapper" style="background-image: url('jade28.jpg');"></div>
+                    <img src="jade27.jpg" alt="Image 3">
                 </div>
                  <div class="slide">
-                    <div class="snapper" style="background-image: url('jade29.jpg');"></div>
-                </div>
-                 <div class="slide">
-                    <div class="snapper" style="background-image: url('jade30.jpg');"></div>
+                    <img src="jade28.jpg" alt="Image 3">
                 </div>
             </div>
         </div>
