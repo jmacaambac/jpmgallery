@@ -13,18 +13,20 @@
             align-items: center;
             height: 100vh;
             background-color: #222;
+            flex-direction: column;
         }
         .carousel {
-            width: 300px;
-            height: 200px;
+            width: 200px;
+            height: 150px;
             position: relative;
             transform-style: preserve-3d;
             animation: rotate 20s infinite linear;
+            margin-bottom: 20px;
         }
         .slide {
             position: absolute;
-            width: 300px;
-            height: 200px;
+            width: 200px;
+            height: 150px;
             top: 0;
             left: 0;
             background-size: cover;
@@ -33,6 +35,8 @@
             border: 2px solid #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
+            backface-visibility: hidden;
+            transform: rotateY(var(--angle)) translateZ(300px) rotateY(10deg);
         }
         @keyframes rotate {
             from {
@@ -42,61 +46,49 @@
                 transform: rotateY(360deg);
             }
         }
+        .individual-images {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .individual-images img {
+            width: 100px;
+            height: 75px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
-    <div class="carousel">
-        <div id="carousel">
-            <div class="slide" style="transform: rotateY(0deg) translateZ(150px);">
-                <img src="jade1.jpg" alt="Image 1">
-            </div>
-            <div class="slide" style="transform: rotateY(120deg) translateZ(150px);">
-                <img src="jade2.jpg" alt="Image 2">
-            </div>
-            <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade12.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade14.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade22.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade24.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade25.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade26.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade27.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade28.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade29.jpg" alt="Image 3">
-            </div>
-             <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
-                <img src="jade30.jpg" alt="Image 3">
-            </div>
-        </div>
+    <div class="carousel" id="carousel"></div>
+
+    <div class="individual-images">
+        <img src="jade1.jpg" alt="Image 1">
+        <img src="jade12.jpg" alt="Image 2">
+        <img src="jade14.jpg" alt="Image 3">
+        <img src="jade2.jpg" alt="Image 4">
+        <img src="jade22.jpg" alt="Image 5">
+        <img src="jade24.jpg" alt="Image 6">
+        <img src="jade25.jpg" alt="Image 7">
+        <img src="jade26.jpg" alt="Image 8">
+        <img src="jade27.jpg" alt="Image 9">
+        <img src="jade28.jpg" alt="Image 10">
+        <img src="jade29.jpg" alt="Image 11">
+        <img src="jade30.jpg" alt="Image 12">
     </div>
-     <script>
+
+    <script>
         const carousel = document.getElementById('carousel');
-        const imageCount = 11;
-        const radius = 50;
+        const imageCount = 12;
         const angleStep = 360 / imageCount;
 
         for (let i = 0; i < imageCount; i++) {
             const angle = i * angleStep;
             const slide = document.createElement('div');
             slide.className = 'slide';
-            slide.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-            slide.style.backgroundImage = `url('image${i + 1}.jpg')`;
+            slide.style.setProperty('--angle', `${angle}deg`);
+            slide.style.backgroundImage = `url('photos/image${i + 1}.jpg')`;
             carousel.appendChild(slide);
         }
     </script>
