@@ -95,5 +95,19 @@
             </div>
         </div>
     </div>
+     <script>
+                const imageCount = 11;
+                const radius = 200;
+                const angleStep = 360 / imageCount;
+                
+                for (let i = 0; i < imageCount; i++) {
+                    const angle = i * angleStep;
+                    document.write(`
+                        <div class="slide" style="transform: rotateY(${angle}deg) translateZ(${radius}px);">
+                            <img src="image${i + 1}.jpg" alt="Image ${i + 1}">
+                        </div>
+                    `);
+                }
+            </script>
 </body>
 </html>
