@@ -57,6 +57,20 @@
 <body>
     <div class="carousel">
         <div class="carousel-inner">
+             <script>
+                const imageCount = 11;
+                const radius = 200;
+                const angleStep = 360 / imageCount;
+                
+                for (let i = 0; i < imageCount; i++) {
+                    const angle = i * angleStep;
+                    document.write(`
+                        <div class="slide" style="transform: rotateY(${angle}deg) translateZ(${radius}px);">
+                            <img src="image${i + 1}.jpg" alt="Image ${i + 1}">
+                        </div>
+                    `);
+                }
+            </script>
             <div class="slide" style="transform: rotateY(0deg) translateZ(150px);">
                 <img src="jade1.jpg" alt="Image 1">
             </div>
@@ -92,21 +106,6 @@
             </div>
              <div class="slide" style="transform: rotateY(240deg) translateZ(150px);">
                 <img src="jade30.jpg" alt="Image 3">
-            </div>
-             <script>
-                const imageCount = 11;
-                const radius = 200;
-                const angleStep = 360 / imageCount;
-                
-                for (let i = 0; i < imageCount; i++) {
-                    const angle = i * angleStep;
-                    document.write(`
-                        <div class="slide" style="transform: rotateY(${angle}deg) translateZ(${radius}px);">
-                            <img src="image${i + 1}.jpg" alt="Image ${i + 1}">
-                        </div>
-                    `);
-                }
-            </script>
         </div>
     </div>
 </body>
