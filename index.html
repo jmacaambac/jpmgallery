@@ -28,7 +28,7 @@
             transition: transform 0.5s ease;
         }
         .carousel.zoomed {
-            transform: scale(1.5);
+            transform: scale(2);
             animation-play-state: paused;
         }
         .slide {
@@ -45,6 +45,7 @@
             border-radius: 20px;
             backface-visibility: hidden;
             transform: rotateY(var(--angle)) translateZ(300px);
+            border-radius: 10px;
         }
         @keyframes rotate {
             from {
@@ -113,19 +114,29 @@
       <img src="jade29.jpg" alt="Image 11" onclick="zoomImage('jade29.jpg')">
       <img src="jade30.jpg" alt="Image 12" onclick="zoomImage('jade30.jpg')">
         </div>
-   <script>
+    <script>
         function zoomImage(src) {
             const carousel = document.getElementById('carousel');
             const slides = carousel.querySelectorAll('.slide');
+            let matchedSlide = null;
+
             slides.forEach(slide => {
                 if (slide.style.backgroundImage.includes(src)) {
-                    carousel.classList.add('zoomed');
+                    matchedSlide = slide;
                 }
             });
-            
-            carousel.addEventListener('mouseleave', () => {
-                carousel.classList.remove('zoomed');
-            });
+
+            if (matchedSlide) {
+                carousel.classList.add('zoomed');
+                matchedSlide.style.zIndex = 10;
+                matchedSlide.style.transform = matchedSlide.style.transform + ' scale(1.5)';
+
+                setTimeout(() => {
+                    carousel.classList.remove('zoomed');
+                    matchedSlide.style.zIndex = 1;
+                    matchedSlide.style.transform = matchedSlide.style.transform.replace(' scale(1.5)', '');
+                }, 2000);
+            }
         }
     </script>
 </body>
