@@ -15,6 +15,7 @@
             background-color: #222;
             flex-direction: column;
             box-sizing: border-box;
+            overflow-x: hidden;
         }
         .carousel {
             width: 90%;
@@ -24,6 +25,11 @@
             transform-style: preserve-3d;
             animation: rotate 20s infinite linear;
             margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+        .carousel.zoomed {
+            transform: scale(1.5);
+            animation-play-state: paused;
         }
         .slide {
             position: absolute;
@@ -36,10 +42,9 @@
             transform-origin: center;
             border: 2px solid #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            backface-visibility: hidden;
-            transform: rotateY(var(--angle)) translateZ(300px) rotateY(15deg);
             border-radius: 20px;
+            backface-visibility: hidden;
+            transform: rotateY(var(--angle)) translateZ(300px);
         }
         @keyframes rotate {
             from {
@@ -62,6 +67,11 @@
             border: 2px solid #fff;
             border-radius: 10px;
             object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .individual-images img:hover {
+            transform: scale(1.2);
         }
         @media (max-width: 480px) {
             .carousel {
@@ -90,31 +100,32 @@
         <div class="slide" style="--angle: 359.7deg; background-image: url('jade30.jpg');"></div>
     </div>
     <div class="individual-images">
-      <img src="jade1.jpg" alt="Image 1">   
-      <img src="jade12.jpg" alt="Image 2">
-      <img src="jade14.jpg" alt="Image 3">
-      <img src="jade2.jpg" alt="Image 4">
-      <img src="jade22.jpg" alt="Image 5">
-      <img src="jade24.jpg" alt="Image 6">
-      <img src="jade25.jpg" alt="Image 7">
-      <img src="jade26.jpg" alt="Image 8">
-      <img src="jade27.jpg" alt="Image 9">
-      <img src="jade28.jpg" alt="Image 10">
-      <img src="jade29.jpg" alt="Image 11">
-      <img src="jade30.jpg" alt="Image 12">
+      <img src="jade1.jpg" alt="Image 1" onclick="zoomImage('jade1.jpg')">   
+      <img src="jade12.jpg" alt="Image 2" onclick="zoomImage('jade12.jpg')">
+      <img src="jade14.jpg" alt="Image 3" onclick="zoomImage('jade14.jpg')">
+      <img src="jade2.jpg" alt="Image 4" onclick="zoomImage('jade2.jpg')">
+      <img src="jade22.jpg" alt="Image 5" onclick="zoomImage('jade22.jpg')">
+      <img src="jade24.jpg" alt="Image 6" onclick="zoomImage('jade24.jpg')">
+      <img src="jade25.jpg" alt="Image 7" onclick="zoomImage('jade25.jpg')">
+      <img src="jade26.jpg" alt="Image 8" onclick="zoomImage('jade26.jpg')">
+      <img src="jade27.jpg" alt="Image 9" onclick="zoomImage('jade27.jpg')">
+      <img src="jade28.jpg" alt="Image 10" onclick="zoomImage('jade28.jpg')">
+      <img src="jade29.jpg" alt="Image 11" onclick="zoomImage('jade29.jpg')">
+      <img src="jade30.jpg" alt="Image 12" onclick="zoomImage('jade30.jpg')">
         </div>
-    <script>
-        const carousel = document.getElementById('carousel');
-        const imageCount = 12;
-        const angleStep = 360 / imageCount;
-
-        for (let i = 0; i < imageCount; i++) {
-            const angle = i * angleStep;
-            const slide = document.createElement('div');
-            slide.className = 'slide';
-            slide.style.setProperty('--angle', `${angle}deg`);
-            slide.style.backgroundImage = `url('image${i + 1}.jpg')`;
-            carousel.appendChild(slide);
+   <script>
+        function zoomImage(src) {
+            const carousel = document.getElementById('carousel');
+            const slides = carousel.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                if (slide.style.backgroundImage.includes(src)) {
+                    carousel.classList.add('zoomed');
+                }
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                carousel.classList.remove('zoomed');
+            });
         }
     </script>
 </body>
