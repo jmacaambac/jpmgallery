@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Image Carousel</title>
     <style>
-        body {
+         body {
             margin: 0;
             perspective: 1000px;
             display: flex;
@@ -16,8 +16,8 @@
             flex-direction: column;
         }
         .carousel {
-            width: 200px;
-            height: 150px;
+            width: 300px;
+            height: 200px;
             position: relative;
             transform-style: preserve-3d;
             animation: rotate 20s infinite linear;
@@ -25,8 +25,8 @@
         }
         .slide {
             position: absolute;
-            width: 200px;
-            height: 150px;
+            width: 300px;
+            height: 200px;
             top: 0;
             left: 0;
             background-size: cover;
@@ -36,7 +36,8 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             backface-visibility: hidden;
-            transform: rotateY(var(--angle)) translateZ(300px) rotateY(10deg);
+            transform: rotateY(var(--angle)) translateZ(400px) rotateY(15deg);
+            border-radius: 20px;
         }
         @keyframes rotate {
             from {
